@@ -1,3 +1,5 @@
+![Google Colab](https://img.shields.io/badge/Google%20Colab-%23F9A825.svg?style=for-the-badge&logo=googlecolab&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+
 ## Technical consultant in the RAG-system
 
 В данном подходе решения поставленной задачи я создал базу знаний в виде *Google-документа* и загрузил её в **Google Colab** проект, предварительно открыв доступ для чтения в **Google Диске**. Подробная инструкция по составлению структуры и информации в базе знаний представлена внутри проекта.
