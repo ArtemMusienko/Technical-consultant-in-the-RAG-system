@@ -10,16 +10,16 @@
 
 За основу в реализации нейро-сотрудника я использую фреймворк **LlamaIndex**. Для просмотра трассировок был внедрен **Phoenix** с его **UI**, но для его полноценной работы я реализовал создание защищенного туннеля через **[Cloudflared](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64)**. Также для Phoenix нужно выполнить команду `nest_asyncio.apply()`, которая необходима для параллельных вычислений в среде ноутбуков.
 
-В качестве LLM-модели я выбрал **IlyaGusev/saiga_yandexgpt_8b**, а в качестве эмбеддинг-модели - **sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2**.
+В качестве LLM-модели я выбрал **[IlyaGusev/saiga_yandexgpt_8b](https://huggingface.co/IlyaGusev/saiga_yandexgpt_8b)**, а в качестве эмбеддинг-модели - **[sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)**.
 
 Также для более корректной и лучшей работы *RAG-системы* были реализованы следующие подходы, закрывающие проблему  **"болевых точек"**:
 
 -   **Болевая точка 1:**  недостающий контент (реализовал очистку данных и улучшение промптов);
 -   **Болевая точка 4:**  контекст не извлечен (использовался  **ресортировщик контента**);
--   **Болевая точка 8:**  масштабируемость полученных данных;
+-   **Болевая точка 8:**  масштабируемость полученных данных (применяется параллельная обработка);
 -   **Болевая точка 12:**  Безопасность  **LLM**  (через  **NeMo Guardrails**).
 
 <img width="1301" height="740" alt="image" src="https://github.com/user-attachments/assets/288ab2a9-05a1-4814-ac2e-4d7ae7074863" />
 
 > Для выполнения этого кода настоятельно рекомендую использовать
-> **графический ускоритель T4** в **Google Colab** или мощнее.
+> **графический ускоритель T4** в **Google Colab** или мощнее!
