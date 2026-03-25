@@ -1,29 +1,34 @@
 ![Google Colab](https://img.shields.io/badge/Google%20Colab-%23F9A825.svg?style=for-the-badge&logo=googlecolab&logoColor=white)![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 
-![enter link description here](https://cdn.sanity.io/images/7m9jw85w/production/88941f3dfaf0e7d0f07dc58057830025b7828d73-1800x980.png)
-
 ## Technical consultant in the RAG-system
 
-В основе этого репозитория лежит **LlamaIndex** - это фреймворк данных для создания приложений на основе больших языковых моделей (LLM). Он позволяет подключать пользовательские и приватные данные к LLM, чтобы сделать работу искусственного интеллекта полезной и релевантной для конкретной задачи.
+![enter link description here](https://cdn.sanity.io/images/7m9jw85w/production/88941f3dfaf0e7d0f07dc58057830025b7828d73-1800x980.png)  
 
-В данном подходе решения поставленной задачи я создал базу знаний в виде *Google-документа* и загрузил её в **Google Colab** проект, предварительно открыв доступ для чтения в **Google Диске**. Подробная инструкция по составлению структуры и информации в базе знаний представлена внутри проекта.
+[![ru](https://img.shields.io/badge/README_на_русском-2A2C39?style=for-the-badge&logo=github&logoColor=white)](README.ru.md)
 
-Перед запуском кода обратите внимание на версии загружаемых библиотек. Также после загрузки потребуется выполнить перезагрузку проекта и заново запустить.
+This repository is based on **LlamaIndex**, a data framework for building applications based on large language models (LLM). It allows you to connect user and private data to LLM to make the work of artificial intelligence useful and relevant to a specific task.
 
-В блоке импорта библиотек необходимо указать свой *API-ключ*, который можно сгенерировать в настройках профиля на **Hugging Face**.
+In this approach, I created a knowledge base as a *Google document* and uploaded it to a **Google Colab** project, having previously opened read access in **Google Drive**. A detailed instruction on how to create a structure and information in the knowledge base is provided within the project.
 
-За основу в реализации нейро-сотрудника я использую фреймворк **LlamaIndex**. Для просмотра трассировок был внедрен **Phoenix** с его **UI**, но для его полноценной работы я реализовал создание защищенного туннеля через **[Cloudflared](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64)**. Также для Phoenix нужно выполнить команду `nest_asyncio.apply()`, которая необходима для параллельных вычислений в среде ноутбуков.
+Before running the code, pay attention to the versions of the libraries that are being loaded. After loading, you will need to reload the project and run it again.
 
-В качестве LLM-модели я выбрал **[IlyaGusev/saiga_yandexgpt_8b](https://huggingface.co/IlyaGusev/saiga_yandexgpt_8b)**, а в качестве эмбеддинг-модели - **[sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)**.
+In the library import block, you will need to specify your *API key*, which can be generated in the profile settings on **Hugging Face**.
 
-Также для более корректной и лучшей работы *RAG-системы* были реализованы следующие подходы, закрывающие проблему  **"болевых точек"**:
+I am using the **LlamaIndex** framework as the basis for implementing the neural assistant. To view the traces, I implemented **Phoenix** with its **UI**, but to make it work properly, I created a secure tunnel using **[Cloudflared](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64)**. Additionally, I used the command `nest_asyncio.apply()` for parallel computing in the notebook environment. 
 
--   **Болевая точка 1:**  недостающий контент (реализовал очистку данных и улучшение промптов);
--   **Болевая точка 4:**  контекст не извлечен (использовался  **ресортировщик контента**);
--   **Болевая точка 8:**  масштабируемость полученных данных (применяется параллельная обработка);
--   **Болевая точка 12:**  Безопасность  **LLM**  (через  **NeMo Guardrails**).
+I chose **[IlyaGusev/saiga_yandexgpt_8b](https://huggingface.co/IlyaGusev/saiga_yandexgpt_8b)** as the LLM model, and **[sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)** as the embedding model.
 
-<img width="1301" height="740" alt="image" src="https://github.com/user-attachments/assets/288ab2a9-05a1-4814-ac2e-4d7ae7074863" />
+Also, for more correct and better operation of the *RAG-system*, the following approaches were implemented to solve the problem of "pain points":
 
-> Для выполнения этого кода настоятельно рекомендую использовать
-> **графический ускоритель T4** или мощнее!
+- **Pain point 1:** missing content (implemented data cleaning and prompt improvement);
+
+- **Pain point 4:** context is not extracted (content reshuffler was used);
+
+- **Pain point 8:** scalability of the received data (parallel processing is applied);
+
+- **Pain point 12:** **LLM** security (via **NeMo Guardrails** ).
+
+<img  width="1301"  height="740"  alt="image"  src="https://github.com/user-attachments/assets/288ab2a9-05a1-4814-ac2e-4d7ae7074863"  />
+
+> To run this code, I strongly recommend using a
+>  **T4 graphics accelerator** or better!
